@@ -23,7 +23,12 @@ const DialogueBox = ({
     }
   }, [isVisible]);
   
-  if (!isVisible || !dialogue) return null;
+  if (!isVisible || !dialogue) {
+    return (
+      <div className={`${showEndingPage ? "dialogue-overlay-no-bg" : "dialogue-overlay"} hidden`}>
+      </div>
+    );
+  }
   
   const { lines, choices, item } = dialogue;
   const currentLine = lines[currentLineIndex];

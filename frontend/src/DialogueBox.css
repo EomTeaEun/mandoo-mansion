@@ -13,6 +13,11 @@
   padding-bottom: 50px;
 }
 
+/* 대화창 숨김 상태 */
+.dialogue-overlay.hidden {
+  display: none !important;
+}
+
 /* 엔딩 페이지에서 대화창 오버레이 (배경 어두워짐 효과 없음) */
 .dialogue-overlay-no-bg {
   position: fixed;
@@ -26,6 +31,11 @@
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 50px;
+}
+
+/* 엔딩 페이지 대화창 숨김 상태 */
+.dialogue-overlay-no-bg.hidden {
+  display: none !important;
 }
 
 /* 대화창 컨테이너 */

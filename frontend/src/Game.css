@@ -147,6 +147,10 @@
   background-repeat: no-repeat !important;
   margin: 0;
   padding: 0;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .character {
@@ -155,6 +159,10 @@
   height: 100px;
   transition: all 0.1s ease;
   z-index: 10;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .character-sprite {
@@ -162,6 +170,10 @@
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.8));
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* 상호작용 영역 스타일 */
@@ -173,6 +185,9 @@
   z-index: 5;
   pointer-events: auto;
   touch-action: manipulation;
+  /* 픽셀 정렬을 위한 설정 */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .interaction-area:hover {
