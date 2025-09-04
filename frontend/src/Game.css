@@ -293,7 +293,8 @@
   background-color: rgba(139, 69, 19, 0.1);
 }
 
-/* 좌표 표시 스타일 */
+
+/* 좌표 표시 스타일 
 .coordinates-display {
   position: fixed;
   top: 20px;
@@ -308,7 +309,7 @@
   z-index: 1000;
   border: 1px solid #00ff00;
   text-shadow: 0 0 5px #00ff00;
-}
+}  */
 
 /* 반응형 디자인 */
 @media (max-width: 1200px) {

@@ -1024,8 +1024,8 @@ const Game = () => {
             <div 
               className="interaction-area cellar-passage"
               style={{
-                left: '270px',
-                top: '50px',
+                left: '290px',
+                top: '70px',
                 width: '110px',
                 height: '70px'
               }}
@@ -1112,7 +1112,7 @@ const Game = () => {
       
       {/* 좌표 표시 (오른쪽 모서리) */}
       <div className="coordinates-display">
-        X: {position.x}, Y: {position.y}
+       {/* X: {position.x}, Y: {position.y} */}
       </div>
     </div>
   );
