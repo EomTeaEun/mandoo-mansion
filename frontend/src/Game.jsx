@@ -27,6 +27,7 @@ import './Game.css';
 const Game = () => {
   // 게임 상태 관리
   const [gameState, setGameState] = useState('start'); // 'start' 또는 'playing'
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   
   // 맵 상태 관리
   const [currentMap, setCurrentMap] = useState('livingroom');
@@ -107,6 +108,40 @@ const Game = () => {
       }
     }, 500);
   };
+
+  // 이미지 프리로딩
+  useEffect(() => {
+    const preloadImages = () => {
+      const imageUrls = [
+        startImg, livingroomImg, kitchenImg, corridorImg, 
+        toiletImg, bedroomImg, cellarImg, goolbeaImg, 
+        escapeImg, happyEndingImg, badEndingImg,
+        charFrontImg, charBackImg, charLeftImg, charRightImg, mandooImg
+      ];
+      
+      let loadedCount = 0;
+      const totalImages = imageUrls.length;
+      
+      imageUrls.forEach((url) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setImagesLoaded(true);
+          }
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setImagesLoaded(true);
+          }
+        };
+        img.src = url;
+      });
+    };
+    
+    preloadImages();
+  }, []);
 
   // 맵 이동 감지 및 처리
   useEffect(() => {
@@ -744,9 +779,16 @@ const Game = () => {
           style={{ backgroundImage: `url(${startImg})` }}
         >
           <div className="start-overlay">
-            <button className="start-button" onClick={startGame}>
-              🎮 게임 시작하기
-            </button>
+            {!imagesLoaded ? (
+              <div className="loading-screen">
+                <div className="loading-text">이미지 로딩 중...</div>
+                <div className="loading-spinner"></div>
+              </div>
+            ) : (
+              <button className="start-button" onClick={startGame}>
+                🎮 게임 시작하기
+              </button>
+            )}
           </div>
         </div>
       </div>
