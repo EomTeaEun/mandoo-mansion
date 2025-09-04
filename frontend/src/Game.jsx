@@ -317,7 +317,7 @@ const Game = () => {
         
         if (distance < 5) return prevPos; // 목표에 도달했으면 정지
         
-        const speed = 7; // 속도 7로 설정
+        const speed = 5; // 속도 5로 설정
         const moveX = (dx / distance) * speed;
         const moveY = (dy / distance) * speed;
         

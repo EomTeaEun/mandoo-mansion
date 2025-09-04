@@ -14,7 +14,7 @@ const DodgeGame = ({ isVisible, onSuccess, onFailure }) => {
   // 게임 상수
   const PLAYER_SPEED = 15; // 10 -> 15로 증가
   const BULLET_SPEED = 3;
-  const BULLET_SPAWN_RATE = 120; // 프레임당 확률 (총알 개수 줄임)
+  const BULLET_SPAWN_RATE = 150; // 프레임당 확률 (총알 개수 더 줄임)
   const GAME_WIDTH = 800;
   const GAME_HEIGHT = 600;
 
@@ -83,10 +83,10 @@ const DodgeGame = ({ isVisible, onSuccess, onFailure }) => {
     };
     
     const bulletRect = {
-      left: bullet.x + 6, // 총알 크기 더 줄임 (20 -> 8)
-      right: bullet.x + 14,
-      top: bullet.y + 6,
-      bottom: bullet.y + 14
+      left: bullet.x + 8, // 총알 충돌 범위 더 줄임
+      right: bullet.x + 12,
+      top: bullet.y + 8,
+      bottom: bullet.y + 12
     };
     
     return playerRect.left < bulletRect.right &&
