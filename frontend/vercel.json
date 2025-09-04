@@ -1,7 +1,4 @@
 {
-  "buildCommand": "cd frontend && npm run build",
-  "outputDirectory": "frontend/dist",
-  "installCommand": "cd frontend && npm install",
   "framework": "vite",
   "rewrites": [
     {
@@ -38,11 +35,6 @@
       ]
     }
   ],
-  "functions": {
-    "frontend/src/**/*.js": {
-      "maxDuration": 10
-    }
-  },
   "regions": ["icn1"],
   "build": {
     "env": {
