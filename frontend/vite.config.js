@@ -5,14 +5,8 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // 빌드 최적화
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    // 빌드 최적화 (esbuild 사용 - 더 빠름)
+    minify: 'esbuild',
     // 청크 크기 최적화
     rollupOptions: {
       output: {
