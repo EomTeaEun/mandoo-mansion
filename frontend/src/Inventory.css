@@ -1,0 +1,198 @@
+/* 인벤토리 오버레이 */
+.inventory-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+/* 인벤토리 창 */
+.inventory-window {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  border: 3px solid #3498db;
+  border-radius: 20px;
+  width: 800px;
+  max-height: 80vh;
+  box-shadow: 0 0 30px rgba(52, 152, 219, 0.5);
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* 인벤토리 헤더 */
+.inventory-header {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #2980b9;
+}
+
+.inventory-header h2 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* 인벤토리 내용 */
+.inventory-content {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* 빈 인벤토리 */
+.empty-inventory {
+  text-align: center;
+  padding: 40px;
+  color: #bdc3c7;
+}
+
+.empty-inventory p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+/* 인벤토리 그리드 */
+.inventory-grid {
+  display: grid;
+  gap: 15px;
+}
+
+/* 인벤토리 아이템 */
+.inventory-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(52, 152, 219, 0.3);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+.inventory-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(52, 152, 219, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 아이템 아이콘 */
+.item-icon {
+  font-size: 32px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* 아이템 정보 */
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  color: white;
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item-description {
+  color: #bdc3c7;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+
+/* 인벤토리 푸터 */
+.inventory-footer {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inventory-footer p {
+  color: #95a5a6;
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 스크롤바 스타일 */
+.inventory-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.inventory-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.inventory-content::-webkit-scrollbar-thumb {
+  background: rgba(52, 152, 219, 0.5);
+  border-radius: 4px;
+}
+
+.inventory-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 152, 219, 0.7);
+}
+
+/* 애니메이션 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 900px) {
+  .inventory-window {
+    width: 90vw;
+    margin: 20px;
+  }
+  
+  .inventory-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .item-icon {
+    margin-bottom: 10px;
+  }
+}

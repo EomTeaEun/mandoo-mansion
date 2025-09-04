@@ -1,0 +1,234 @@
+/* 대화창 오버레이 */
+.dialogue-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+/* 엔딩 페이지에서 대화창 오버레이 (배경 어두워짐 효과 없음) */
+.dialogue-overlay-no-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+/* 대화창 컨테이너 */
+.dialogue-box {
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #8B4513;
+  border-radius: 15px;
+  padding: 20px;
+  min-width: 600px;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* 대화 내용 */
+.dialogue-content {
+  position: relative;
+}
+
+/* 대화 텍스트 */
+.dialogue-text {
+  color: white;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* 다음 대사 화살표 */
+.next-arrow {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  color: #4a90e2;
+  font-size: 24px;
+  cursor: pointer;
+  animation: bounce 1s infinite;
+  text-shadow: 0 0 10px rgba(74, 144, 226, 0.8);
+}
+
+.next-arrow:hover {
+  color: #7bb3f0;
+  transform: scale(1.2);
+}
+
+/* 아이템 획득 메시지 */
+.item-obtained {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+}
+
+.item-icon {
+  font-size: 20px;
+}
+
+.item-text {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* 선택지 버튼들 */
+.choice-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.choice-button {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.choice-button:hover {
+  background: linear-gradient(135deg, #5ba0f2, #4a90e2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.choice-button:active {
+  transform: translateY(0);
+}
+
+/* 애니메이션 */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .dialogue-box {
+    min-width: 90vw;
+    margin: 0 20px;
+    padding: 15px;
+  }
+  
+  .dialogue-text {
+    font-size: 16px;
+  }
+  
+  .choice-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .choice-button {
+    width: 100%;
+  }
+}
+
+/* 비밀번호 입력 스타일 */
+.password-input-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.password-input {
+  width: 200px;
+  padding: 12px 16px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2c3e50;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.password-input:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+  background: white;
+}
+
+.password-input::placeholder {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.password-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.password-submit-button,
+.password-cancel-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.password-submit-button {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+}
+
+.password-submit-button:hover {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+}
+
+.password-cancel-button {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.password-cancel-button:hover {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+}

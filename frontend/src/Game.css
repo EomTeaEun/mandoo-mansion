@@ -1,0 +1,351 @@
+/* 맵 전환 효과 */
+.map-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInOut 0.5s ease-in-out;
+}
+
+.transition-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  animation: pulse 1s infinite;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* 전체 게임 컨테이너 */
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 시작 화면 스타일 */
+.start-screen {
+  background: #000;
+  width: 100vw;
+  height: 100vh;
+}
+
+.start-background {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-overlay {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  background: none;
+  padding: 0;
+  border: none;
+  text-align: center;
+}
+
+.start-button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 25px 50px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+  font-family: 'Arial', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.7);
+  background: linear-gradient(45deg, #ff5252, #d63031);
+}
+
+.start-button:active {
+  transform: translateY(-1px);
+}
+
+/* 게임 플레이 화면 스타일 */
+.playing-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  position: relative;
+}
+
+/* 엔딩 페이지가 표시될 때는 배경 숨기기 */
+.playing-screen.ending-active {
+  background: transparent;
+}
+
+.game-background {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  margin: 0;
+  padding: 0;
+}
+
+.character {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transition: all 0.1s ease;
+  z-index: 10;
+}
+
+.character-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.8));
+}
+
+/* 상호작용 영역 스타일 */
+.interaction-area {
+  position: absolute;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.interaction-area:hover {
+  border-color: #00ff00;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+/* 특정 상호작용 영역별 스타일 */
+.interaction-area.bookshelf:hover {
+  border-color: #ffd700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+  background-color: rgba(255, 215, 0, 0.1);
+}
+
+.interaction-area.storage:hover {
+  border-color: #87ceeb;
+  box-shadow: 0 0 20px rgba(135, 206, 235, 0.8);
+  background-color: rgba(135, 206, 235, 0.1);
+}
+
+.interaction-area.stairs:hover {
+  border-color: #8b4513;
+  box-shadow: 0 0 20px rgba(139, 69, 19, 0.8);
+  background-color: rgba(139, 69, 19, 0.1);
+}
+
+.interaction-area.carpet:hover {
+  border-color: #dc143c;
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+  background-color: rgba(220, 20, 60, 0.1);
+}
+
+.interaction-area.plant:hover {
+  border-color: #228b22;
+  box-shadow: 0 0 20px rgba(34, 139, 34, 0.8);
+  background-color: rgba(34, 139, 34, 0.1);
+}
+
+.interaction-area.door:hover {
+  border-color: #daa520;
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.8);
+  background-color: rgba(218, 165, 32, 0.1);
+}
+
+.interaction-area.kitchen-counter:hover {
+  border-color: #ff6347;
+  box-shadow: 0 0 20px rgba(255, 99, 71, 0.8);
+  background-color: rgba(255, 99, 71, 0.1);
+}
+
+.interaction-area.kitchen-cabinet:hover {
+  border-color: #8b4513;
+  box-shadow: 0 0 20px rgba(139, 69, 19, 0.8);
+  background-color: rgba(139, 69, 19, 0.1);
+}
+
+.interaction-area.refrigerator:hover {
+  border-color: #f0f8ff;
+  box-shadow: 0 0 20px rgba(240, 248, 255, 0.8);
+  background-color: rgba(240, 248, 255, 0.1);
+}
+
+.interaction-area.corridor-wall:hover {
+  border-color: #696969;
+  box-shadow: 0 0 20px rgba(105, 105, 105, 0.8);
+  background-color: rgba(105, 105, 105, 0.1);
+}
+
+.interaction-area.toilet-sink:hover {
+  border-color: #4169e1;
+  box-shadow: 0 0 20px rgba(65, 105, 225, 0.8);
+  background-color: rgba(65, 105, 225, 0.1);
+}
+
+.interaction-area.bathtub:hover {
+  border-color: #87ceeb;
+  box-shadow: 0 0 20px rgba(135, 206, 235, 0.8);
+  background-color: rgba(135, 206, 235, 0.1);
+}
+
+.interaction-area.bed:hover {
+  border-color: #ff69b4;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+  background-color: rgba(255, 105, 180, 0.1);
+}
+
+.interaction-area.goolbea:hover {
+  border-color: #ff4500;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+  background-color: rgba(255, 69, 0, 0.1);
+}
+
+.interaction-area.secret-panel:hover {
+  border-color: #9370db;
+  box-shadow: 0 0 20px rgba(147, 112, 219, 0.8);
+  background-color: rgba(147, 112, 219, 0.1);
+}
+
+.interaction-area.cellar-passage:hover {
+  border-color: #8b4513;
+  box-shadow: 0 0 20px rgba(139, 69, 19, 0.8);
+  background-color: rgba(139, 69, 19, 0.1);
+}
+
+/* 좌표 표시 스타일 */
+.coordinates-display {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ff00;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1000;
+  border: 1px solid #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+  .game-background {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .start-button {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+  }
+  
+  .start-overlay {
+    bottom: 50px;
+    right: 50px;
+  }
+  
+  .character {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .start-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+  
+  .start-overlay {
+    bottom: 30px;
+    right: 30px;
+  }
+  
+  .character {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* 엔딩 페이지 스타일 */
+.ending-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.ending-fullscreen-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* 안경만두 스타일 */
+.mandoo {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.mandoo-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  animation: mandooFloat 2s ease-in-out infinite;
+}
+
+@keyframes mandooFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
