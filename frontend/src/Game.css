@@ -64,31 +64,23 @@
 
 /* 전체 게임 컨테이너 */
 .game-container {
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* 창 크기에 맞춰 스케일 조정 */
-  transform-origin: center center;
-  /* 부드러운 스케일 전환 */
-  transition: transform 0.1s ease-out;
 }
 
 /* 시작 화면 스타일 */
 .start-screen {
   background: #000;
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .start-background {
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -135,8 +127,8 @@
 
 /* 게임 플레이 화면 스타일 */
 .playing-screen {
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
   background: #000;
   position: relative;
 }
@@ -147,8 +139,8 @@
 }
 
 .game-background {
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
   position: relative;
   background-size: cover !important;
   background-position: center !important;
