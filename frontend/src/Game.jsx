@@ -143,6 +143,39 @@ const Game = () => {
     preloadImages();
   }, []);
 
+  // 창 크기에 맞춰 게임 스케일 조정
+  useEffect(() => {
+    const adjustGameScale = () => {
+      const gameContainer = document.querySelector('.game-container');
+      if (!gameContainer) return;
+
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const gameWidth = 1920;
+      const gameHeight = 1080;
+
+      // 창 크기에 맞는 스케일 계산
+      const scaleX = windowWidth / gameWidth;
+      const scaleY = windowHeight / gameHeight;
+      const scale = Math.min(scaleX, scaleY);
+
+      // 스케일 적용
+      gameContainer.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    };
+
+    // 초기 스케일 조정
+    adjustGameScale();
+
+    // 창 크기 변경 시 스케일 조정
+    window.addEventListener('resize', adjustGameScale);
+    window.addEventListener('orientationchange', adjustGameScale);
+
+    return () => {
+      window.removeEventListener('resize', adjustGameScale);
+      window.removeEventListener('orientationchange', adjustGameScale);
+    };
+  }, []);
+
   // 맵 이동 감지 및 처리
   useEffect(() => {
     if (gameState !== 'playing') return;
