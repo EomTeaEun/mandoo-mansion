@@ -346,6 +346,12 @@ const Game = () => {
             playerRect.right > mandooRect.left &&
             playerRect.top < mandooRect.bottom &&
             playerRect.bottom > mandooRect.top) {
+          
+          // 지하실에서는 배드엔딩으로 가지 않음
+          if (currentMap === 'cellar') {
+            return prevPos; // 충돌해도 그냥 위치만 유지
+          }
+          
           // 충돌 발생 - 배드엔딩 페이지로 이동 후 대화창 표시
           setIsMandooVisible(false);
           setIsMandooSpawning(false);
