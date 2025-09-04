@@ -14,7 +14,7 @@ const DodgeGame = ({ isVisible, onSuccess, onFailure }) => {
   // 게임 상수
   const PLAYER_SPEED = 15; // 10 -> 15로 증가
   const BULLET_SPEED = 3;
-  const BULLET_SPAWN_RATE = 60; // 프레임당 확률
+  const BULLET_SPAWN_RATE = 120; // 프레임당 확률 (총알 개수 줄임)
   const GAME_WIDTH = 800;
   const GAME_HEIGHT = 600;
 
