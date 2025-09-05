@@ -100,6 +100,13 @@
   text-align: center;
 }
 
+.start-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
 .start-button {
   background: linear-gradient(45deg, #ff6b6b, #ee5a24);
   color: white;
@@ -122,6 +129,31 @@
 }
 
 .start-button:active {
+  transform: translateY(-1px);
+}
+
+.sound-button {
+  background: linear-gradient(45deg, #4ecdc4, #44a08d);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.5);
+  font-family: 'Arial', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.sound-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(78, 205, 196, 0.7);
+  background: linear-gradient(45deg, #45b7aa, #3d8b7a);
+}
+
+.sound-button:active {
   transform: translateY(-1px);
 }
 

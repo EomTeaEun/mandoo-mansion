@@ -22,12 +22,16 @@ import charBackImg from './assets/char_back.png';
 import charLeftImg from './assets/char_left.png';
 import charRightImg from './assets/char_right.png';
 import mandooImg from './assets/mandoo.png';
+import backgroundMusic from './assets/001. Kevin Macleod - Darkest Child.mp3';
 import './Game.css';
 
 const Game = () => {
   // 게임 상태 관리
   const [gameState, setGameState] = useState('start'); // 'start' 또는 'playing'
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  
+  // 사운드 관리
+  const [audio, setAudio] = useState(null);
   
   // 맵 상태 관리
   const [currentMap, setCurrentMap] = useState('livingroom');
@@ -143,6 +147,89 @@ const Game = () => {
     preloadImages();
   }, []);
 
+  // 사운드 초기화 및 관리
+  useEffect(() => {
+    console.log('사운드 파일 경로:', backgroundMusic);
+    
+    const audioElement = new Audio(backgroundMusic);
+    audioElement.loop = true;
+    audioElement.volume = 0.5; // 볼륨을 조금 더 높임
+    audioElement.preload = 'auto';
+    audioElement.muted = false;
+    
+    // 자동 재생을 위한 설정
+    audioElement.setAttribute('playsinline', '');
+    audioElement.setAttribute('webkit-playsinline', '');
+    
+    // 오디오 로드 이벤트 리스너
+    audioElement.addEventListener('canplaythrough', () => {
+      console.log('오디오 파일 로드 완료');
+    });
+    
+    audioElement.addEventListener('error', (e) => {
+      console.error('오디오 파일 로드 에러:', e);
+    });
+    
+    setAudio(audioElement);
+
+    // 페이지 로드 시 즉시 사운드 재생 시도
+    const tryPlayImmediately = async () => {
+      try {
+        console.log('사운드 재생 시도 중...');
+        await audioElement.play();
+        console.log('즉시 사운드 재생 성공');
+      } catch (error) {
+        console.log('즉시 사운드 재생 실패:', error);
+        console.log('에러 상세:', error.message);
+      }
+    };
+    
+    // 약간의 지연 후 시도 (DOM이 완전히 로드된 후)
+    setTimeout(tryPlayImmediately, 1000);
+
+    return () => {
+      if (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      }
+    };
+  }, []);
+
+  // start 페이지에서만 사운드 재생
+  useEffect(() => {
+    if (!audio) return;
+
+    if (gameState === 'start') {
+      // 자동 재생을 위한 여러 시도
+      const playAudio = async () => {
+        try {
+          console.log('start 페이지에서 사운드 재생 시도 중...');
+          await audio.play();
+          console.log('사운드 재생 성공');
+        } catch (error) {
+          console.log('사운드 재생 실패:', error);
+          console.log('에러 상세:', error.message);
+          
+          // 첫 번째 시도 실패 시 잠시 후 다시 시도
+          setTimeout(async () => {
+            try {
+              console.log('사운드 재생 재시도 중...');
+              await audio.play();
+              console.log('사운드 재생 성공 (재시도)');
+            } catch (retryError) {
+              console.log('사운드 재생 실패 (재시도):', retryError);
+              console.log('재시도 에러 상세:', retryError.message);
+            }
+          }, 1000);
+        }
+      };
+      
+      playAudio();
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }, [gameState, audio]);
 
   // 맵 이동 감지 및 처리
   useEffect(() => {
@@ -382,7 +469,18 @@ const Game = () => {
 
 
   // 게임 시작 함수
-  const startGame = () => {
+  const startGame = async () => {
+    // 사운드 재생 시도 (사용자 상호작용 후)
+    if (audio) {
+      try {
+        console.log('게임 시작 버튼 클릭 - 사운드 재생 시도');
+        await audio.play();
+        console.log('사운드 재생 성공 (게임 시작)');
+      } catch (error) {
+        console.log('사운드 재생 실패 (게임 시작):', error);
+      }
+    }
+    
     setGameState('playing');
     setCurrentMap('livingroom');
     setPosition(mapStartPositions.livingroom);
@@ -792,9 +890,27 @@ const Game = () => {
                 <div className="loading-spinner"></div>
               </div>
             ) : (
-              <button className="start-button" onClick={startGame}>
-                🎮 게임 시작하기
-              </button>
+              <div className="start-buttons">
+                <button 
+                  className="sound-button" 
+                  onClick={async () => {
+                    if (audio) {
+                      try {
+                        console.log('사운드 재생 버튼 클릭');
+                        await audio.play();
+                        console.log('사운드 재생 성공');
+                      } catch (error) {
+                        console.log('사운드 재생 실패:', error);
+                      }
+                    }
+                  }}
+                >
+                  🔊 사운드 재생
+                </button>
+                <button className="start-button" onClick={startGame}>
+                  🎮 게임 시작하기
+                </button>
+              </div>
             )}
           </div>
         </div>
